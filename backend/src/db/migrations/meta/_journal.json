@@ -8,6 +8,20 @@
       "when": 1768677858255,
       "tag": "0000_normal_tyger_tiger",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1768688266778,
+      "tag": "0001_kind_shadow_king",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1768688536262,
+      "tag": "0002_clumsy_black_widow",
+      "breakpoints": true
     }
   ]
 }

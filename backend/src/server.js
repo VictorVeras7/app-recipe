@@ -2,6 +2,7 @@ import express from 'express';
 import { ENV } from './config/env.js';
 import { db } from './config/db.js';
 import { favoritesTable } from './db/schema.js';
+import { and, eq } from 'drizzle-orm';
 
 const app = express();
 const PORT = ENV.PORT;
@@ -37,6 +38,22 @@ app.post("/api/favorites", async (req, res) => {
   }
 
 
+});
+
+app.delete("/api/favorites/:userId/:recipeId", async (req, res) => {
+  try {
+    const { userId, recipeId } = req.params;
+
+    await db.delete(favoritesTable).where(and(
+      eq(favoritesTable.userId, userId), 
+      eq(favoritesTable.recipeId, parseInt(recipeId))
+    ));
+
+    res.status(200).json({ success: true, message: "Favorite deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting favorite:", error);
+    res.status(500).json({ success: false, message: "Failed to delete favorite" });
+  }
 });
 
 app.listen(PORT, () => {
